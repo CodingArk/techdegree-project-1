@@ -49,6 +49,7 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 function getRandomQuote() {
+  // Genrates a random number and returns it
   let randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes[randomNumber];
 }
@@ -60,7 +61,13 @@ function getRandomQuote() {
 function printQuote() {
   let randomQuote = getRandomQuote();
   // Obtained code from https://css-tricks.com/snippets/javascript/random-hex-color/
+  // Randomly generates a hexadecimal number 
   let randomColor = Math.floor(Math.random()*16777215).toString(16);
+  /***
+    * Assigns the "quotes" object details into html format
+    * And checks if certain details are present in the object
+    * And if so, assigns those details into html format aswell
+  ***/
   let html = `<p class="quote"> ${randomQuote.quote} </p>`;
   html += `<p class="source"> ${randomQuote.source}`;
   if (randomQuote.citation) {
@@ -73,14 +80,20 @@ function printQuote() {
     html += `<span class="tags"> ${randomQuote.tags} </span>`;
   }
   html += `</p>`;
-  // Obtained code from https://css-tricks.com/snippets/javascript/random-hex-color/
+  /***
+    * Obtained code from https://css-tricks.com/snippets/javascript/random-hex-color/
+    * Takes the randomly generated hexadecimal number from randomColor
+    * And changes the background color
+  ***/
   document.body.style.backgroundColor = "#" + randomColor;
+  // Displays the html to the webpage
   document.getElementById('quote-box').innerHTML = html;           
 }
 
 
 /***
  * Page automatically updates at regular intervals
+ * At about 4 second intervals
 ***/
 setInterval(printQuote, 4000);
 
